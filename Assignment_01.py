@@ -1,3 +1,9 @@
+#Assignment no. 1
+#Name : Atharva Vinod Ghodekar
+#Batch : B2
+#Roll no : 23
+#Title : Assignment based on text preprocessing using NLP operations like tokenization,stop words,lemmatization,part of speech
+
 import spacy
 nlp = spacy.load("en_core_web_sm")
         
