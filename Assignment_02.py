@@ -1,8 +1,8 @@
-#Assignment no : 1
+#Assignment no : 2
 #Name : Atharva Vinod Ghodekar
 #Batch : B2
 #Roll no : 23
-#Title : 
+#Title : Natural Language Processing (NLP) using Gensim
 
 import gensim
 import pprint
