@@ -5,26 +5,23 @@
 #Title : Natural Language Processing (NLP) using Gensim
 
 import gensim
-import pprint
 from gensim import corpora
-from gensim.utils import simple_preprocess
 
-doc_list = [
-   "My name is Atharva Ghodekar.", 
+text1 = ["My name is Atharva Ghodekar.", 
    "I am from Sanjivani College of Engineering.", 
-   "Atharva is from Ahmednagar. "
-]
+   "Atharva is from Ahmednagar. "]
 
-doc_tokenized = [simple_preprocess(doc) for doc in doc_list]
-dictionary = corpora.Dictionary()
-BoW_corpus = [dictionary.doc2bow(doc, allow_update=True) for doc in doc_tokenized]
-BoW_corpus = [dictionary.doc2bow(doc, allow_update=True) for doc in doc_tokenized]
-print(BoW_corpus)
-print("--------------------------------------------------------------------------------------------------------")
-id_words = [[(dictionary[id], count) for id, count in line] for line in BoW_corpus]
-print(id_words)
+
+tokens1 = [[item for item in line.split()] for line in text1]
+g_dict1 = corpora.Dictionary(tokens1)
+
+print("The dictionary has: " +str(len(g_dict1)) + " tokens\n")
+print(g_dict1.token2id)
+
+g_bow =[g_dict1.doc2bow(token, allow_update = True) for token in tokens1]
+print("Bag of Words : ", g_bow)
 
 #Output :
-#[[(0, 1), (1, 1), (2, 1), (3, 1), (4, 1)], [(5, 1), (6, 1), (7, 1), (8, 1), (9, 1), (10, 1)], [(0, 1), (2, 1), (8, 1), (11, 1)]]
-#--------------------------------------------------------------------------------------------------------
-#[[('atharva', 1), ('ghodekar', 1), ('is', 1), ('my', 1), ('name', 1)], [('am', 1), ('college', 1), ('engineering', 1), ('from', 1), ('of', 1), ('sanjivani', 1)], [('atharva', 1), ('is', 1), ('from', 1), ('ahmednagar', 1)]]
+#The dictionary has: 13 tokens
+#{'Atharva': 0, 'Ghodekar.': 1, 'My': 2, 'is': 3, 'name': 4, 'College': 5, 'Engineering.': 6, 'I': 7, 'Sanjivani': 8, 'am': 9, 'from': 10, 'of': 11, 'Ahmednagar.': 12}
+#Bag of Words :  [[(0, 1), (1, 1), (2, 1), (3, 1), (4, 1)], [(5, 1), (6, 1), (7, 1), (8, 1), (9, 1), (10, 1), (11, 1)], [(0, 1), (3, 1), (10, 1), (12, 1)]]
