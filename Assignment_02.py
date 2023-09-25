@@ -6,6 +6,8 @@
 
 import gensim
 from gensim import corpora
+from gensim.utils import simple_preprocess
+from gensim import corpora
 
 text1 = ["My name is Atharva Ghodekar.", 
    "I am from Sanjivani College of Engineering.", 
@@ -21,7 +23,35 @@ print(g_dict1.token2id)
 g_bow =[g_dict1.doc2bow(token, allow_update = True) for token in tokens1]
 print("Bag of Words : ", g_bow)
 
+
+print("\n--------------------------------------------------------------------------------------------------------------------------")
+print("-----TFIDF------------------------------------------------------------------------------------------------------------------")
+text = ["My name is Atharva Ghodekar.", 
+   "I am from Sanjivani College of Engineering.", 
+   "Atharva is from Ahmednagar. "]
+
+g_dict = corpora.Dictionary([simple_preprocess(line) for line in text])
+g_bow = [g_dict.doc2bow(simple_preprocess(line)) for line in text]
+
+print("Dictionary : ")
+for item in g_bow:
+    print([[g_dict[id], freq] for id, freq in item])
+
+g_tfidf = models.TfidfModel(g_bow, smartirs='ntc')
+
+print("TF-IDF Vector:")
+for item in g_tfidf[g_bow]:
+    print([[g_dict[id], np.around(freq, decimals=2)] for id, freq in item])
+
+
 #Output :
-#The dictionary has: 13 tokens
-#{'Atharva': 0, 'Ghodekar.': 1, 'My': 2, 'is': 3, 'name': 4, 'College': 5, 'Engineering.': 6, 'I': 7, 'Sanjivani': 8, 'am': 9, 'from': 10, 'of': 11, 'Ahmednagar.': 12}
-#Bag of Words :  [[(0, 1), (1, 1), (2, 1), (3, 1), (4, 1)], [(5, 1), (6, 1), (7, 1), (8, 1), (9, 1), (10, 1), (11, 1)], [(0, 1), (3, 1), (10, 1), (12, 1)]]
+# The dictionary has: 13 tokens
+# {'Atharva': 0, 'Ghodekar.': 1, 'My': 2, 'is': 3, 'name': 4, 'College': 5, 'Engineering.': 6, 'I': 7, 'Sanjivani': 8, 'am': 9, 'from': 10, 'of': 11, 'Ahmednagar.': 12}
+# Bag of Words :  [[(0, 1), (1, 1), (2, 1), (3, 1), (4, 1)], [(5, 1), (6, 1), (7, 1), (8, 1), (9, 1), (10, 1), (11, 1)], [(0, 1), (3, 1), (10, 1), (12, 1)]]
+
+# --------------------------------------------------------------------------------------------------------------------------
+# -----TFIDF------------------------------------------------------------------------------------------------------------------
+# Dictionary : 
+# [['atharva', 1], ['ghodekar', 1], ['is', 1], ['my', 1], ['name', 1]]
+# [['am', 1], ['college', 1], ['engineering', 1], ['from', 1], ['of', 1], ['sanjivani', 1]]
+# [['atharva', 1], ['is', 1], ['from', 1], ['ahmednagar', 1]]
