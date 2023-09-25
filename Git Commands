@@ -1,0 +1,20 @@
+git config --list
+
+git config --global --unset user.email "shekharbhide036@gmail.com"
+
+git config --global user.email "shekharbhide036@gmail.com"
+
+git config --global user.name "Shekhar Bhide"
+
+
+
+
+source env/bin/activate
+
+
+
+
+
+
+
+git remote set-url origin https://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@github.com/shekharbhide/shekhar_nlp.git
