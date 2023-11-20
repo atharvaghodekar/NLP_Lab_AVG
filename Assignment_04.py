@@ -1,4 +1,4 @@
-# Name: Atharva Ghodekar
+# Name: Atharva Vinod Ghodekar
 # Batch: B2
 # Roll no: 23
 # Pract no. 3: Generating the n gram model using nltk'''
@@ -136,7 +136,7 @@ for i in file.readlines():
 # ('intelligence', '(AI)', 'is')
 # ('(AI)', 'is', 'the')
 # ('is', 'the', 'intelligence')
-# ('the', 'intelligence', 'of')
+# ('the', 'intellig--ence', 'of')
 # ('intelligence', 'of', 'machines')
 # ('of', 'machines', 'or')
 # ('machines', 'or', 'software,')
