@@ -1,3 +1,8 @@
+# Name: Abhijit Balasaheb Phapale
+# Batch: B3
+# Roll no: 45
+# Pract no. 6: Dependency parsing using spacy
+
 import spacy
 nlp = spacy.load("en_core_web_sm")
 piano_text = "Atharva is learning piano"
