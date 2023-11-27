@@ -4,8 +4,10 @@
 # Pract no. 6: Dependency parsing using spacy
 
 import spacy
+from spacy import displacy
+
 nlp = spacy.load("en_core_web_sm")
-piano_text = "Atharva is learning piano"
+piano_text = "Atharva is learning python He is now working on NLP project"
 piano_doc = nlp(piano_text)
 for token in piano_doc:
     print(
@@ -16,6 +18,8 @@ TOKEN: {token.text}
 {token.head.text = }
 {token.dep_ = }"""
     )
+    
+displacy.serve(piano_doc, style="dep")
     
 # Output:
 # TOKEN: Atharva
