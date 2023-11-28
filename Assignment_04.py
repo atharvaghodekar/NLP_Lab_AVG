@@ -1,7 +1,7 @@
-# Name: Abhijit Balasaheb Phapale
-# Batch: B3
-# Roll no: 45
-# Pract no. 4: Generating the n gram model using nltk'''
+# Name: Atharva Vinod Ghodekar
+# Batch: B2
+# Roll no: 23
+# Pract no. 4: Generating the n gram model using nltk
 
 from nltk import ngrams
 
