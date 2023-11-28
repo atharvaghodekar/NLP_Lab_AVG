@@ -1,245 +1,38 @@
-# Name: Abhijit Balasaheb Phapale
-# Batch: B3
-# Roll no: 45
-# Pract no. 4: Generating the n gram model using nltk'''
+#Assignment no : 3
+#Name : Atharva Vinod Ghodekar
+#Batch : B2
+#Roll no : 23
+#Title : Implement Named Entity Recognition(NER) on textual data using SpaCy library for English language.
 
-from nltk import ngrams
+import spacy
 
-from nltk.util import ngrams
-#unigram model
-n = 1
-sentence = 'Artificial intelligence (AI) is the intelligence of machines or software, as opposed to the intelligence of humans or animals. It is a field of study in computer science that develops and studies intelligent machines. "AI" may also refer to the machines themselves.'
-unigrams = ngrams(sentence.split(), n)
-print("Unigram : ")
-for item in unigrams:
-    print(item)
-#bigram model
-n = 2
-sentence = 'Artificial intelligence (AI) is the intelligence of machines or software, as opposed to the intelligence of humans or animals. It is a field of study in computer science that develops and studies intelligent machines. "AI" may also refer to the machines themselves.'
-unigrams = ngrams(sentence.split(), n)
-print("\nBigram : ")
-for item in unigrams:
-    print(item)
-#trigram model
-n = 3
-sentence = 'Artificial intelligence (AI) is the intelligence of machines or software, as opposed to the intelligence of humans or animals. It is a field of study in computer science that develops and studies intelligent machines. "AI" may also refer to the machines themselves.'
-unigrams = ngrams(sentence.split(), n)
-print("Trigram : ")
-for item in unigrams:
-    print(item)
+# Load the English language model
+nlp = spacy.load("en_core_web_sm")
 
-#using text file input
-from nltk import ngrams
-file = open("/home/exam/Desktop/NLP_Lab_AVG/AI.txt")
-for i in file.readlines():
-    cumulative = i
-    sentences = i.split(".")
-    counter = 0
-    print("\nUsing Text File : ")
-    for sentence in sentences:
-        print("For sentence", counter + 1, ", trigrams are: ")
-        trigrams = ngrams(sentence.split(" "), 3)
-        for grams in trigrams:
-            print(grams)
-        counter += 1
-        print()
+def perform_ner(text):
+    # Process the text using SpaCy
+    doc = nlp(text)
+    
+    # Extract named entities and their labels
+    entities = [(ent.text, ent.label_) for ent in doc.ents]
+    
+    return entities
 
-# Output:     
-# Unigram : 
-# ('Artificial',)
-# ('intelligence',)
-# ('(AI)',)
-# ('is',)
-# ('the',)
-# ('intelligence',)
-# ('of',)
-# ('machines',)
-# ('or',)
-# ('software,',)
-# ('as',)
-# ('opposed',)
-# ('to',)
-# ('the',)
-# ('intelligence',)
-# ('of',)
-# ('humans',)
-# ('or',)
-# ('animals.',)
-# ('It',)
-# ('is',)
-# ('a',)
-# ('field',)
-# ('of',)
-# ('study',)
-# ('in',)
-# ('computer',)
-# ('science',)
-# ('that',)
-# ('develops',)
-# ('and',)
-# ('studies',)
-# ('intelligent',)
-# ('machines.',)
-# ('"AI"',)
-# ('may',)
-# ('also',)
-# ('refer',)
-# ('to',)
-# ('the',)
-# ('machines',)
-# ('themselves.',)
+if __name__ == "__main__":
+    # Example text
+    text = "Apple Inc. is planning to open a new store in San Francisco next month."
 
-# Bigram : 
-# ('Artificial', 'intelligence')
-# ('intelligence', '(AI)')
-# ('(AI)', 'is')
-# ('is', 'the')
-# ('the', 'intelligence')
-# ('intelligence', 'of')
-# ('of', 'machines')
-# ('machines', 'or')
-# ('or', 'software,')
-# ('software,', 'as')
-# ('as', 'opposed')
-# ('opposed', 'to')
-# ('to', 'the')
-# ('the', 'intelligence')
-# ('intelligence', 'of')
-# ('of', 'humans')
-# ('humans', 'or')
-# ('or', 'animals.')
-# ('animals.', 'It')
-# ('It', 'is')
-# ('is', 'a')
-# ('a', 'field')
-# ('field', 'of')
-# ('of', 'study')
-# ('study', 'in')
-# ('in', 'computer')
-# ('computer', 'science')
-# ('science', 'that')
-# ('that', 'develops')
-# ('develops', 'and')
-# ('and', 'studies')
-# ('studies', 'intelligent')
-# ('intelligent', 'machines.')
-# ('machines.', '"AI"')
-# ('"AI"', 'may')
-# ('may', 'also')
-# ('also', 'refer')
-# ('refer', 'to')
-# ('to', 'the')
-# ('the', 'machines')
-# ('machines', 'themselves.')
-# Trigram : 
-# ('Artificial', 'intelligence', '(AI)')
-# ('intelligence', '(AI)', 'is')
-# ('(AI)', 'is', 'the')
-# ('is', 'the', 'intelligence')
-# ('the', 'intellig--ence', 'of')
-# ('intelligence', 'of', 'machines')
-# ('of', 'machines', 'or')
-# ('machines', 'or', 'software,')
-# ('or', 'software,', 'as')
-# ('software,', 'as', 'opposed')
-# ('as', 'opposed', 'to')
-# ('opposed', 'to', 'the')
-# ('to', 'the', 'intelligence')
-# ('the', 'intelligence', 'of')
-# ('intelligence', 'of', 'humans')
-# ('of', 'humans', 'or')
-# ('humans', 'or', 'animals.')
-# ('or', 'animals.', 'It')
-# ('animals.', 'It', 'is')
-# ('It', 'is', 'a')
-# ('is', 'a', 'field')
-# ('a', 'field', 'of')
-# ('field', 'of', 'study')
-# ('of', 'study', 'in')
-# ('study', 'in', 'computer')
-# ('in', 'computer', 'science')
-# ('computer', 'science', 'that')
-# ('science', 'that', 'develops')
-# ('that', 'develops', 'and')
-# ('develops', 'and', 'studies')
-# ('and', 'studies', 'intelligent')
-# ('studies', 'intelligent', 'machines.')
-# ('intelligent', 'machines.', '"AI"')
-# ('machines.', '"AI"', 'may')
-# ('"AI"', 'may', 'also')
-# ('may', 'also', 'refer')
-# ('also', 'refer', 'to')
-# ('refer', 'to', 'the')
-# ('to', 'the', 'machines')
-# ('the', 'machines', 'themselves.')
+    # Perform Named Entity Recognition
+    named_entities = perform_ner(text)
 
-# Using Text File : 
-# For sentence 1 , trigrams are: 
-# ('AI', 'technology', 'is')
-# ('technology', 'is', 'widely')
-# ('is', 'widely', 'used')
-# ('widely', 'used', 'throughout')
-# ('used', 'throughout', 'industry,')
-# ('throughout', 'industry,', 'government')
-# ('industry,', 'government', 'and')
-# ('government', 'and', 'science')
+    # Print the results
+    print("Named Entities:")
+    for entity, label in named_entities:
+        print(f"{entity} - {label}")
 
-# For sentence 2 , trigrams are: 
-# ('', 'Some', 'high-profile')
-# ('Some', 'high-profile', 'applications')
-# ('high-profile', 'applications', 'are:')
-# ('applications', 'are:', 'advanced')
-# ('are:', 'advanced', 'web')
-# ('advanced', 'web', 'search')
-# ('web', 'search', 'engines')
-# ('search', 'engines', '(e')
 
-# For sentence 3 , trigrams are: 
-
-# For sentence 4 , trigrams are: 
-# (',', 'Google', 'Search),')
-# ('Google', 'Search),', 'recommendation')
-# ('Search),', 'recommendation', 'systems')
-# ('recommendation', 'systems', '(used')
-# ('systems', '(used', 'by')
-# ('(used', 'by', 'YouTube,')
-# ('by', 'YouTube,', 'Amazon,')
-# ('YouTube,', 'Amazon,', 'and')
-# ('Amazon,', 'and', 'Netflix),')
-# ('and', 'Netflix),', 'understanding')
-# ('Netflix),', 'understanding', 'human')
-# ('understanding', 'human', 'speech')
-# ('human', 'speech', '(such')
-# ('speech', '(such', 'as')
-# ('(such', 'as', 'Siri')
-# ('as', 'Siri', 'and')
-# ('Siri', 'and', 'Alexa),')
-# ('and', 'Alexa),', 'self-driving')
-# ('Alexa),', 'self-driving', 'cars')
-# ('self-driving', 'cars', '(e')
-
-# For sentence 5 , trigrams are: 
-
-# For sentence 6 , trigrams are: 
-# (',', 'Waymo),', 'generative')
-# ('Waymo),', 'generative', 'or')
-# ('generative', 'or', 'creative')
-# ('or', 'creative', 'tools')
-# ('creative', 'tools', '(ChatGPT')
-# ('tools', '(ChatGPT', 'and')
-# ('(ChatGPT', 'and', 'AI')
-# ('and', 'AI', 'art),')
-# ('AI', 'art),', 'and')
-# ('art),', 'and', 'competing')
-# ('and', 'competing', 'at')
-# ('competing', 'at', 'the')
-# ('at', 'the', 'highest')
-# ('the', 'highest', 'level')
-# ('highest', 'level', 'in')
-# ('level', 'in', 'strategy')
-# ('in', 'strategy', 'games')
-# ('strategy', 'games', '(such')
-# ('games', '(such', 'as')
-# ('(such', 'as', 'chess')
-# ('as', 'chess', 'and')
-# ('chess', 'and', 'Go)')
+# # OUTPUT:
+# Named Entities:
+# Apple Inc. - ORG
+# San Francisco - GPE
+# next month - DATE

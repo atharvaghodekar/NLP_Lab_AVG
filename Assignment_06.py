@@ -1,13 +1,13 @@
-# Name: Abhijit Balasaheb Phapale
-# Batch: B3
-# Roll no: 45
+# Name: Atharva Vinod Ghodekar
+# Batch: B2
+# Roll no: 23
 # Pract no. 6: Dependency parsing using spacy
 
 import spacy
 from spacy import displacy
-
-nlp = spacy.load("en_core_web_sm")
-piano_text = "Atharva is learning python He is now working on NLP project"
+import en_core_web_sm
+nlp = en_core_web_sm.load()
+piano_text = "Atharva is learning pyano"
 piano_doc = nlp(piano_text)
 for token in piano_doc:
     print(
